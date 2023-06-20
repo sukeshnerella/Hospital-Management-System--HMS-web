@@ -1,0 +1,249 @@
+import socket
+s = socket.socket()
+print ("Socket successfully created")
+port = 15423
+s.bind(('127.0.0.1', port))
+print ("socket binded to %s" %(port))
+s.listen(5)
+print ("socket is listening")
+while True:
+    c, addr = s.accept()
+    print ('Got connection from', addr )
+    c.send('Thank you for connecting'.encode())
+    c.close()
+
+4A Server Code
+
+import socket
+s = socket.socket()
+port = 15423
+s.connect(('127.0.0.1', port))
+print (s.recv(1024).decode())
+s.close()	
+
+4A Client Code
+
+import socket
+s = socket.socket()
+print ("Socket successfully created")
+port = 15423
+s.bind(('192.168.50.12', port))
+print ("socket binded to %s" %(port))
+s.listen(5)
+print ("socket is listening")
+while True:
+    c, addr = s.accept()
+    print ('Got connection from', addr )
+    c.send('Thank you for connecting'.encode())
+    c.close()
+
+4B Server Code
+
+import socket
+s = socket.socket()
+port = 15423
+s.connect(('192.168.20.12', port))
+print (s.recv(1024).decode())
+s.close()	
+
+4B Client Code
+
+import socket
+import time
+sock = socket.socket()
+print ("Socket created successfully.")
+port = 8800
+host = '192.168.50.254'
+sock.bind((host, port))
+t1=time.time()
+sock.listen(100)
+print('Socket is listening...')
+while True:
+    con, addr = sock.accept()
+    print('Connected with ', addr)
+    data = con.recv(1024)
+    print(data.decode())
+    file = open('video1.mp4', 'rb')
+    line = file.read(1024)
+    while(line):
+        con.send(line)
+        line = file.read(1024)
+    file.close()
+    t2=time.time()
+    print('File has been transferred successfully.')
+    con.close()
+
+4C Server Code
+
+import socket
+sock = socket.socket()
+print ("Socket created successfully.")
+port = 8800
+host = '192.168.50.254'
+sock.connect((host, port))
+print('Connection Established.')
+sock.send('A message from the client'.encode())
+file = open('client-file.jpeg', 'wb')
+line = sock.recv(1024)
+while(line):
+    file.write(line)
+    line = sock.recv(1024)
+print (sock.recv(1024).decode())
+print('File has been received successfully.')
+file.close()
+sock.close()
+print('Connection Closed.')
+
+4C Client Code
+--------------------------------------------------------------------
+import socket
+def s(n):
+    serv = socket.socket()
+    serv.bind(('192.168.50.43',54320))
+    serv.listen(5)
+    print("listening")
+    while True:
+        conn, addr = serv.accept()
+        print(addr)
+        conn.send(n.encode())
+        print("-->")
+        break
+    serv.close()
+    return
+    
+def co(ip,x):
+    serv1 = socket.socket()
+    while True:
+        serv1.connect((ip,x))
+        m=serv1.recv(1024)       
+        addr=m.decode()
+        break
+    serv1.close()
+    return addr
+
+
+while True:
+    n='www.goolge.com'
+    print(n)
+    s(n)
+    n1=co("192.168.50.41",54321)
+    print("-----------",n1)
+    s(n1)
+    n2=co("192.168.50.36",54322)
+    print("-----------",n2)
+    s(n2)
+    n3=co("192.168.50.47",54323)
+    print("------------")
+    print(n3)
+-----------------------------------------------------------
+
+import socket
+def s():
+    serv = socket.socket()
+    serv.bind(('192.168.50.41', 12353))
+    serv.listen()
+    while True:
+        conn, addr = serv.accept()
+        print(addr)
+        conn.send("192.168.50.36".encode())
+        break
+    serv.close()
+def co():
+    serv1 = socket.socket()
+    while True:
+        serv1.connect(('192.168.50.43',12358))
+        m=serv1.recv(1024)
+        print(m.decode())
+        s()
+        break
+    serv1.close()
+
+co()
+#EXP5
+------------------------------------------------------------
+
+exp1
+
+
+
+BASIC NETWOKS COMMONDAS
+
+
+Finding host/domain name and IP address -hostname
+
+test network connection –ping
+getting network configuration –ifconfig
+Network connections routing tables, interface statistics – netstat
+query DNS lookup name – nslookup
+communicate with another hostname – telnet
+outing steps that packets take to get to network host – traceroute
+view user information –finger
+checking status of destination host - telnet
+
+
+1.ping
+Use ping to see if a host is alive. This super simple command helps you check the status of a host or a network segment. Ping command sends an ICMP ECHO_REQUEST packet to the target host and waits to see if it replies.
+However, some hosts block ICMP echo requests with a firewall. Some sites on the internet may also do the same.
+By default, ping runs in an infinite loop. To send a defined number of packets, use -c flag.
+$ ping -c 3 google.com
+PING google.com (172.217.167.238): 56 data bytes
+64 bytes from 172.217.167.238: icmp_seq=0 ttl=118 time=7.898 ms
+64 bytes from 172.217.167.238: icmp_seq=1 ttl=118 time=7.960 ms
+64 bytes from 172.217.167.238: icmp_seq=2 ttl=118 time=6.247 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 6.247/7.368/7.960/0.793 ms
+A failed ping could be due to
+•	network failure
+•	host being not alive
+•	firewall blocking ICMP ECHO requests
+
+2. traceroute
+If ping shows missing packets, you should use traceroute to see what route the packets are taking.  Traceroute shows the sequence of gateways through which the packets travel to reach their destination. For example, traceroute from my
+
+Machine to google.com shows the following:
+$ traceroute google.com
+traceroute to google.com (172.217.167.46), 64 hops max, 52 byte packets
+ 1  dlinkrouter.dlink (192.168.0.1)  5.376 ms  2.076 ms  1.932 ms
+ 2  10.194.0.1 (10.194.0.1)  5.190 ms  5.125 ms  4.989 ms
+ 3  broadband.actcorp.in (49.207.47.201)  7.165 ms  5.749 ms  5.755 ms
+ 4  broadband.actcorp.in (49.207.47.225)  5.918 ms *  8.483 ms
+...
+9  108.170.251.97 (108.170.251.97)  6.359 ms
+    del03s16-in-f14.1e100.net (172.217.167.46)  5.448 ms
+    108.170.251.97 (108.170.251.97)  6.400 ms
+Line 4 in this output shows a * in the round trip times. This indicates no response was received. This can be due to many reasons – as the traceroute ICMP packets are low-priority, these may be dropped by a router. Or there could be simply congestion. If you see a * in all the time fields for a given gateway, then possibly the gateway is down.
+
+
+3.netstat
+
+Most useful and very versatile for finding a connection to and from the host. You can find out all the multicast groups (network) subscribed by this host by issuing "netstat -g"
+
+netstat -nap | grep port will display process id of application which is using that port
+netstat -a or netstat –all will displayall connections including TCP and UDP
+netstat --tcp or netstat –twill display only TCP connection
+netstat --udp or netstat –u will display only UDP  connection
+netstat -g will display all multicastnetworksubscribed by this host
+
+Here is an example:
+$ netstat -i
+Kernel Interface table
+Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0       1500 0      4001      0      0 0          2283      0      0      0 BMRU
+eth1       1500 0     27154      0      0 0        838962      0      0      0 BMRU
+lo        65536 0         0      0      0 0             0      0      0      0 LRU
+Copy
+Using-r flag will display the routing table. This shows the path configured for sending network packets.
+$ netstat -r
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         10.0.2.2        0.0.0.0         UG        0 0          0 eth0
+10.0.0.0        *               255.255.255.0   U         0 0          0 eth1
+10.0.2.0        *               255.255.255.0   U         0 0          0 eth0
+Copy
+An asterisk in the last two lines indicates that no gateway is required to send packets to any host on these networks. This host is directly connected to the networks 10.0.0.0 and 10.0.2.0.
+Inthe first line, the destination is the default, which means any packet destined for a network not listed in this table is handled by the router 10.0.2,2.
+netstat command without any options displays a list of open sockets. Use -I flag to show only listening sockets, which by default, are not shown. You can use -a flag to show listening and non-listening sockets.
+
+-----------------------------------------------------------------------------------------------

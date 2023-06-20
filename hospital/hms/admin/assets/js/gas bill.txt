@@ -1,0 +1,1573 @@
+Computer Networks Lab
+Vignan's Foundation for Science, Technology & Research
+(Deemed to be University)
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+List of Programs
+1. Understanding the basic commands and using of commands like ifconfig, netstat, ping, arp, telnet, 
+ftp, finger, traceroute, whois etc. Usage of elementary socket system calls (socket (), bind(), listen(), 
+accept(),connect(),send(),recv(),sendto(),recvfrom()).
+2. Implementation of Peer-to-peer Network Architecture
+3. Implementation of Client-Server model Architecture
+4. Implementation TCP client-server using socket programming in C 
+ a) program for TCP connection establishment
+ b) program for TCP Chat between client and server.
+ c) program for File Date transfer between client and server.
+5. Implementation DNS client-server using socket programming in C 
+6. Implementation of stop and wait ARQ flow control mechanism between the end systems through 
+socket programming.
+7. Implementation of selective repeat ARQ flow control mechanism between the end systems through 
+socket programming.
+8. Implementation of Shortest Path Between Routing Terminals through socket programming.
+9. Program for implementation error control mechanisms
+a) Cyclic Redundancy Check
+b) Checksum
+OBJECTIVES:
+➢ To understand the functionalities of various layers of OSI model
+➢ To understand the use of client/server architecture in application development.
+➢ To understand and use elementary socket system calls, advanced socket system calls 
+and TCP and UDP based sockets
+➢ To implement network routing algorithms, application layer protocols
+Lab Course Outcomes: 
+Student will be able to
+➢ Understand the usage of basic commands ipconig, ifconfig, netstat, ping, arp, 
+telnet,ftp,finger,traceroute, whois of LINUX platform. 
+➢ Develop and Implement Client-Server Socket based programs using TCP and UDP sockets
+➢ Develop and Implement Routing Algorithm 
+Software requirements 
+Operating system: Linux/Ubuntu/Windows
+Language : C/Java/Python
+USEFUL TEXT BOOKS / REFERECES 
+1. An Introduction to Operating Systems, P.C.P Bhatt, 2nd edition, PHI.
+2. Modern Operating Systems, Andrew S Tanenbaum, 3rd Edition, PHI
+What is a network? 
+What usually call a computer network is composed of a number of "network layers”, each 
+providing a different restriction and/or guarantee about the data at that layer. The protocols at 
+each network layer generally have their own packet formats, and headers. The seven traditional 
+layers of a network are divided into two groups: upper layers and lower layers. The sockets 
+interface provides a uniform API to lower layers of a network, and allows implementing upper 
+layers within r sockets application. Further, application data formats may themselves constitute 
+further layers, e.g. SOAP is built on top of XML, and XML may itself utilize SOAP.
+Socket Programming: 
+Socket Address: 
+ A socket is one endpoint of a two-way communication link between two programs 
+running on the network. 
+ A socket is bound to a port number so that the TCP layer can identify the application 
+that data is destined to be sent to. 
+ An endpoint is a combination of an IP address and a port number. Every TCP 
+connection can be uniquely identified by its two endpoints. That way you can have 
+multiple connections between your host and the server. 
+ TCP/IP creates the socket address as an identifier that is unique throughout all Internet 
+networks. TCP/IP concatenates the Internet address of the local host interface with the 
+port number to devise the Internet socket address. Two types of (TCP/IP) sockets : 
+ Stream sockets (e.g. uses TCP) : provide reliable byte-stream service
+ Datagram sockets (e.g. uses UDP) :provide best-effort datagram service , messages up 
+Sockets – Procedures:
+1. Basic commands to analyze the packet flow performance in the network, such as ifconfig, ping, 
+traceroute, and netstat. Write the description of each command along with the output.
+Finding host/domain name and IP address -hostname
+test network connection –ping
+getting network configuration –ifconfig
+Network connections routing tables, interface statistics – netstat
+query DNS lookup name – nslookup
+communicate with another hostname – telnet
+outing steps that packets take to get to network host – traceroute
+view user information –finger
+checking status of destination host - telnet
+===============================================================================
+2. Establish communication between the end systems in peer-to-peer network architecture. Access 
+the files in the different systems. Apply for different permissions on the files while accessing. Write 
+down the step-by-step procedure while experimenting.
+1) In the P2P network architecture, the computers connect with each other in a 
+workgroup to share files, and access to internet and printers.
+2) Each computer in the network has the same set of responsibilities and capabilities.
+3) Each device in the network serves as both a client and server.
+4) The architecture is useful in residential areas, small offices, or small companies where each 
+computer act as an independent workstation and stores the data on its hard drive.
+5) Each computer in the network has the ability to share data with other computers in the 
+network.
+6) The architecture is usually composed of workgroups of 12 or more computers.
+How Does P2P Network Work?
+Let’s understand the working of the Peer-to-Peer network through an example. Suppose, the 
+user wants to download a file through the peer-to-peer network then the download will be 
+handled in this way:
+ If the peer-to-peer software is not already installed, then the user first has to install the 
+peer-to-peer software on his computer.
+ This creates a virtual network of peer-to-peer application users.
+ The user then downloads the file, which is received in bits that come from multiple 
+computers in the network that have already that file.
+ The data is also sent from the user’s computer to other computers in the network that 
+ask for the data that exist on the user’s computer.
+Thus, it can be said that in the peer-to-peer network the file transfer load is distributed among the 
+peer computers.
+================================================================================
+3. Establish communication among the end systems in client-server network architecture. Design a 
+login web page, load it on a server, and store login credentials in the database. Access the web page 
+from a different system; if login credentials are matched, the home page will open; otherwise, it will 
+show an error. Write down the step-by-step procedure while experimenting.
+The Client-server model is a distributed application structure that partitions task or 
+workload between the providers of a resource or service, called servers, and service 
+requesters called clients. In the client-server architecture, when the client computer 
+sends a request for data to the server through the internet, the server accepts the 
+requested process and deliver the data packets requested back to the client. Clients do 
+not share any of their resources. Examples of Client-Server Model are Email, World 
+Wide Web, etc.
+How the Client-Server Model works?
+In this article we are going to take a dive into the Client-Server model and have a look at how 
+the Internet works via, web browsers. This article will help us in having a solid foundation of the 
+WEB and help in working with WEB technologies with ease.
+Client: When we talk the word Client, it means to talk of a person or an organization using a 
+particular service. Similarly in the digital world a client is a computer (Host) i.e. capable of 
+receiving information or using a particular service from the service providers (Servers).
+Servers: Similarly, when we talk the word Servers, It mean a person or medium that serves 
+something. Similarly in this digital world a Server is a remote computer which provides 
+information (data) or access to particular services.
+=================================================================================
+4. Based on client-server network architecture, establish a connection between two hosts in LAN and 
+transmit messages between the hosts.
+The message is in the form of plain text, file, image (low, high quality), video (small size:10/20MB)
+A) Establish a connection within the same host (127.0.0.1) and then transmit the message.
+Once the message is received, the receiver sends a "successful" message to the sender. Otherwise, it 
+will show an "error" message.
+ALGORITHM:
+SERVER:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Bind the IP address and Port number
+ STEP 6: Listen and accept the client’s request for the connection
+ STEP 7: Establish the connection with the client
+ STEP 8: Close the socket
+ STEP 9: Stop
+CLIENT:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Call the connect() function
+ STEP 6: Close the socket
+ STEP 7: Stop
+SOURCE CODE:
+SERVER:
+#include<stdio.h>
+#include<arpa/inet.h>
+#include<sys/socket.h>
+#include<sys/types.h>
+#define SERV_TCP_PORT 5035
+int main(int argc,char **argv)
+{
+ int sockfd,newsockfd,clength;
+ struct sockaddr_in serv_addr,cli_addr;
+ sockfd=socket(AF_INET,SOCK_STREAM,0);
+ serv_addr.sin_family=AF_INET;
+ serv_addr.sin_addr.s_addr=INADDR_ANY;
+ serv_addr.sin_port=htons(SERV_TCP_PORT);
+ printf("\nStart");
+ bind(sockfd,(struct sockaddr*)&serv_addr,sizeof(serv_addr));
+ printf("\nListening...");
+ listen(sockfd,1);
+ clength=sizeof(cli_addr);
+ newsockfd=accept(sockfd,(struct sockaddr*)&cli_addr,&clength);
+ printf("\nAccepted\n");
+ close(sockfd);
+ return 0;
+}
+CLIENT:
+#include<stdio.h>
+#include<arpa/inet.h>
+#include<sys/socket.h>
+#include<sys/types.h>
+#define CLI_TCP_PORT 5035
+int main(int argc,char **argv)
+{
+ int sockfd;
+ struct sockaddr_in serv_addr;
+ struct hostent * server;
+ sockfd=socket(AF_INET,SOCK_STREAM,0);
+ serv_addr.sin_family=AF_INET;
+ serv_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+ serv_addr.sin_port=htons(CLI_TCP_PORT);
+ printf("\nReady for connect\n");
+ connect(sockfd,(struct sockaddr*)&serv_addr,sizeof(serv_addr));
+ close(sockfd);
+ return 0;
+}
+OUTPUT:
+SERVER:
+CLIENT:
+B) Establish a connection between hosts and then transmit the message. Once the message is 
+received, the receiver sends a "successful" message to the sender. Otherwise, it will show an "error" 
+message (Chat application). Repeat the experiment using UDP.
+ALGORITHM:
+SERVER:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Bind the IP address and Port number
+ STEP 6: Listen and accept the client’s request for the connection
+ STEP 7: Read the client’s message
+ STEP 8: Display the client’s message
+ STEP 9: Continue the chat
+ STEP 10: Terminate the chat
+ STEP 11: Close the socket
+ STEP 12: Stop
+CLIENT:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Call the connect() function
+ STEP 6: Read the input message
+ STEP 7: Send the input message to the server
+ STEP 8: Display the server’s reply
+ STEP 9: Continue the chat
+ STEP 10: Terminate the chat
+ STEP 11: Close the socket
+ STEP 12: Stop
+Client:
+import socket
+cli=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+cli.connect(('127.0.0.1',599))
+payload='Hey server'
+print("Start the conversation! \n Send \"exit\" to leave chat")
+try:
+ while True:
+ cli.send(payload.encode('utf-8'))
+ data = d.recv(1024)
+ print(str(data))
+ payload=input()
+ if payload=="exit":
+ break
+except KeyboardInterrupt:
+ print("Exited by user")
+cli.close()
+Server:
+import socket
+socki=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+socki.bind(('127.0.0.1',599))
+print("Socket Created")
+socki.listen(5)
+while True:
+ print("server waiting for connection")
+ cli,addr=socki.accept()
+ print("Client connected from ",addr)
+ while True:
+ data=cli.recv(1024)
+ if not data or data.decode('utf-8')=='END':
+ break
+ print("Recieved from client: %s"% data.decode("utf-8"))
+ more=input("Enter your reply.")
+ try:
+ cli.send(bytes(more,'utf-8'))
+ except:
+ print("Exited by user")
+ cli.close()
+UDP Client:
+import socket
+cli=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+msg="Hello UDP Server"
+print("Start the conversation! \n Send \"exit\" to leave chat")
+while True:
+ cli.sendto(msg.encode('utf-8'),('127.0.0.1',12345))
+ data,addr=cli.recvfrom(4096)
+ print("Server says: "+ str(data))
+ msg=input()
+ if msg=="exit":
+ break
+cli.close()
+UDPServer:
+import socket
+sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind(('127.0.0.1',12345))
+print("Socket Created")
+while True:
+ data,addr=sock.recvfrom(4096)
+ print(str(data))
+ message=input("Enter your reply.")
+ sock.sendto(message.encode('utf-8'),addr)
+C) Analyze the traffic on different types of messages transmitted between the hosts. The metrics like 
+end-end delay, throughput, used to analyze the performance of the network. Through system calls 
+(Socket programming), the above experiments are developed. Implement client-server model for
+sending and receiving chunks of data as form of packets, they are encoded in binary format (read as 
+binary or write as binary). For simple text message, they are encoded in 'utf8' format Separate 
+encoding is not needed. Buffer size for sending data in packets in 4096 KB. Number of packets sent 
+and received are recorded so as to know if there is any packet loss. Files chosen to be sent & received 
+are text file - 3KB, image file - 33KB, gif file - 56KB, music file - 2350KB, video – 3000KB
+Client:
+import socket
+import time
+import os
+import sys
+def checkArg():
+ """this works omly if executed from command prompt window, it is not designed to work 
+on
+ eclipse platform, since by default, len(sys.argv)=1 & therefore the below condition will
+ always be displayed as true"""
+ if len(sys.argv) != 3:
+ print(
+ "ERROR. Wrong number of arguments passed. System will exit. Next time please 
+supply 2 arguments!")
+ sys.exit()
+ else:
+ print("2 Arguments exist. We can proceed further")
+def checkPort():
+ if int(sys.argv[2]) <= 5000:
+ print(
+ "Port number invalid. Port number should be greater than 5000 else it will not match 
+with Server port. Next time enter valid port.")
+ sys.exit()
+ else:
+ print("Port number accepted!")
+checkArg()
+try:
+ socket.gethostbyname(sys.argv[1])
+except socket.error:
+ print("Invalid host name. Exiting. Next time enter in proper format.")
+ sys.exit()
+host = sys.argv[1]
+try:
+ port = int(sys.argv[2])
+except ValueError:
+ print("Error. Exiting. Please enter a valid port number.")
+ sys.exit()
+except IndexError:
+ print("Error. Exiting. Please enter a valid port number next time.")
+ sys.exit()
+checkPort()
+#host = "127.0.0.1"
+#port = 6000
+try:
+ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+ print("Client socket initialized")
+ s.setblocking(0)
+ s.settimeout(15)
+except socket.error:
+ print("Failed to create socket")
+ sys.exit()
+# time.sleep(1) # gives times for server to reach at same stage
+"""
+Functions like below can be created and called. However, for simplicity, we just put 
+everything in main.
+def ClientGet(a):
+ ClientData, clientAddr = s.recvfrom(51200)
+ text = ClientData.decode('utf8')
+ print(text)
+ ClientData, clientAddr = s.recvfrom(8192)
+ text = ClientData.decode('utf8')
+ print("hey" + text)
+ if len(text) < 30:
+ Data, Recv = s.recvfrom(8192)
+ NewFileOpen = open(a, "wb")
+ NewFileOpen.write(Data)
+ NewFileOpen.close()
+ print("Received File")
+ 
+ 
+"""
+while True:
+ command = input(
+ "Please enter a command: \n1. get [file_name]\n2. put [file_name]\n3. list\n4. exit\n ")
+ """o get [file_name]
+ o put [file_name]
+ o list
+ o exit"""
+ CommClient = command.encode('utf-8')
+ try:
+ s.sendto(CommClient, (host, port))
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers are not matching. Exiting. Next time please enter same port 
+numbers.")
+ sys.exit()
+ #text1 = CommClient.decode('utf-8')
+ #t3 = text1.split()
+ CL = command.split()
+ print(
+ "We shall proceed, but you may want to check Server command prompt for messages, if 
+any.")
+ # starting operations
+ if CL[0] == "get":
+ print("Checking for acknowledgement")
+ try:
+ ClientData, clientAddr = s.recvfrom(51200)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ text = ClientData.decode('utf8')
+ print(text)
+ print("Inside Client Get")
+ try:
+ ClientData2, clientAddr2 = s.recvfrom(51200)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ text2 = ClientData2.decode('utf8')
+ print(text2)
+ if len(text2) < 30:
+ if CL[0] == "get":
+ BigC = open("Received-" + CL[1], "wb")
+ d = 0
+ try:
+ # number of paclets
+ CountC, countaddress = s.recvfrom(4096)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port 
+numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ tillC = CountC.decode('utf8')
+ tillCC = int(tillC)
+ print("Receiving packets will start now if file exists.")
+ # print(
+ # "Timeout is 15 seconds so please wait for timeout at the end.")
+ while tillCC != 0:
+ ClientBData, clientbAddr = s.recvfrom(4096)
+ dataS = BigC.write(ClientBData)
+ d += 1
+ print("Received packet number:" + str(d))
+ tillCC = tillCC - 1
+ BigC.close()
+ print(
+ "New Received file closed. Check contents in your directory.")
+ elif CL[0] == "put":
+ print("Checking for acknowledgement")
+ try:
+ ClientData, clientAddr = s.recvfrom(4096)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ text = ClientData.decode('utf8')
+ print(text)
+ print("We shall start sending data.")
+ if text == "Valid Put command. Let's go ahead ":
+ if os.path.isfile(CL[1]):
+ c = 0
+ #Length = len(CL1[1])
+ size = os.stat(CL[1])
+ sizeS = size.st_size # number of packets
+ #sizeS = sizeS[:-1]
+ print("File size in bytes: " + str(sizeS))
+ Num = int(sizeS / 4096)
+ Num = Num + 1
+ print("Number of packets to be sent: " + str(Num))
+ till = str(Num)
+ tillC = till.encode('utf8')
+ s.sendto(tillC, clientAddr)
+ tillIC = int(Num)
+ GetRun = open(CL[1], "rb")
+ while tillIC != 0:
+ #Run = GetRun.read(1024)
+ Run = GetRun.read(4096)
+ # print(str(Run))
+ #CLC = CL[1].encode('utf-8')
+ # GetRun.close()
+ #propMsg = b"put" + b"|||" + CLC + b"|||" + Run
+ s.sendto(Run, clientAddr)
+ c += 1
+ tillIC -= 1
+ print("Packet number:" + str(c))
+ print("Data sending in process:")
+ GetRun.close()
+ print("Sent from Client - Put function")
+ else:
+ print("File does not exist.")
+ else:
+ print("Invalid.")
+ elif CL[0] == "list":
+ print("Checking for acknowledgement")
+ try:
+ ClientData, clientAddr = s.recvfrom(51200)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ text = ClientData.decode('utf8')
+ print(text)
+ if text == "Valid List command. Let's go ahead ":
+ ClientDataL, clientAddrL = s.recvfrom(4096)
+ text2 = ClientDataL.decode('utf8')
+ print(text2)
+ else:
+ print("Error. Invalid.")
+ elif CL[0] == "exit":
+ print(
+ "Server will exit if you have entered port number correctly, but you will not receive 
+Server's message here.")
+ else:
+ try:
+ ClientData, clientAddr = s.recvfrom(51200)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ text = ClientData.decode('utf8')
+ print(text)
+print("Program will end now. ") # though, this won't get executed.
+quit()
+Server:
+import socket
+import time
+import os
+import sys
+def checkArg():
+ """this works omly if executed from command prompt window, it is not designed to work 
+on
+ eclipse platform, since by default, len(sys.argv)=1 & therefore the below condition will
+ always be displayed as true"""
+ if len(sys.argv) != 2:
+ print(
+ "ERROR. Wrong number of arguments passed. System will exit. Next time please 
+supply 1 argument!")
+ sys.exit()
+ else:
+ print("1 Argument exists. We can proceed further")
+def checkPort():
+ if int(sys.argv[1]) <= 5000:
+ print(
+ "Port number invalid. Port number should be greater than 5000. Next time enter valid 
+port.")
+ sys.exit()
+ else:
+ print("Port number accepted!")
+def ServerList():
+ print("Sending Acknowledgment of command.")
+ msg = "Valid List command. Let's go ahead "
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message Sent to Server.")
+ print("In Server, List function")
+ F = os.listdir(
+ path="C:/Users/prati/workspace/Data Communications Assignment 1/FinalServer")
+ """this path will work on system where server program was made.
+ Pls change this path to the directory you have stored the server.py file
+ """
+ Lists = []
+ for file in F:
+ Lists.append(file)
+ ListsStr = str(Lists)
+ ListsEn = ListsStr.encode('utf-8')
+ s.sendto(ListsEn, clientAddr)
+ print("List sent from Server")
+def ServerExit():
+ print(
+ "System will gracefully exit! Not sending any message to Client. Closing my socket!")
+ s.close() # closing socket
+ sys.exit()
+def ServerGet(g):
+ print("Sending Acknowledgment of command.")
+ msg = "Valid Get command. Let's go ahead "
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message Sent to Client.")
+ print("In Server, Get function")
+ if os.path.isfile(g):
+ msg = "File exists. Let's go ahead "
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message about file existence sent.")
+ c = 0
+ sizeS = os.stat(g)
+ sizeSS = sizeS.st_size # number of packets
+ print("File size in bytes:" + str(sizeSS))
+ NumS = int(sizeSS / 4096)
+ NumS = NumS + 1
+ tillSS = str(NumS)
+ tillSSS = tillSS.encode('utf8')
+ s.sendto(tillSSS, clientAddr)
+ check = int(NumS)
+ GetRunS = open(g, "rb")
+ while check != 0:
+ RunS = GetRunS.read(4096)
+ s.sendto(RunS, clientAddr)
+ c += 1
+ check -= 1
+ print("Packet number:" + str(c))
+ print("Data sending in process:")
+ GetRunS.close()
+ print("Sent from Server - Get function")
+ else:
+ msg = "Error: File does not exist in Server directory."
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message Sent.")
+def ServerPut():
+ print("Sending Acknowledgment of command.")
+ msg = "Valid Put command. Let's go ahead "
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message Sent to Client.")
+ print("In Server, Put function")
+ if t2[0] == "put":
+ BigSAgain = open(t2[1], "wb")
+ d = 0
+ print("Receiving packets will start now if file exists.")
+ #print("Timeout is 15 seconds so please wait for timeout at the end.")
+ try:
+ Count, countaddress = s.recvfrom(4096) # number of packet
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ except:
+ print("Timeout or some other error")
+ sys.exit()
+ tillI = Count.decode('utf8')
+ tillI = int(tillI)
+ #tillI = 100
+ #tillI = tillI - 2
+ # s.settimeout(2)
+ while tillI != 0:
+ ServerData, serverAddr = s.recvfrom(4096)
+ # s.settimeout(2)
+ #BigS = open("tmp.txt", "wb")
+ dataS = BigSAgain.write(ServerData)
+ #BigS2 = open("tmp.txt", "r")
+ #Add = BigS2.read()
+ # print(Add)
+ #Big = Big + Add
+ # BigS2.close()
+ #dataF = tmp.write(ServerData)
+ # Big.append(ServerData)
+ d += 1
+ tillI = tillI - 1
+ print("Received packet number:" + str(d))
+ # tmp.close()
+ #Bigstr = ''.join(map(str, Big))
+ BigSAgain.close()
+ print("New file closed. Check contents in your directory.")
+ #Bigstr = str(Big)
+ # print(Big)
+ #BigSAgain = open(t2[1], "w")
+ # BigSAgain.write(Big)
+ # BigSAgain.close()
+def ServerElse():
+ msg = "Error: You asked for: " + \
+ t2[0] + " which is not understood by the server."
+ msgEn = msg.encode('utf-8')
+ s.sendto(msgEn, clientAddr)
+ print("Message Sent.")
+host = ""
+checkArg()
+try:
+ port = int(sys.argv[1])
+except ValueError:
+ print("Error. Exiting. Please enter a valid port number.")
+ sys.exit()
+except IndexError:
+ print("Error. Exiting. Please enter a valid port number next time.")
+ sys.exit()
+checkPort()
+#port = 6000
+try:
+ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+ print("Server socket initialized")
+ s.bind((host, port))
+ print("Successful binding. Waiting for Client now.")
+ # s.setblocking(0)
+ # s.settimeout(15)
+except socket.error:
+ print("Failed to create socket")
+ sys.exit()
+# time.sleep(1)
+while True:
+ try:
+ data, clientAddr = s.recvfrom(4096)
+ except ConnectionResetError:
+ print(
+ "Error. Port numbers not matching. Exiting. Next time enter same port numbers.")
+ sys.exit()
+ text = data.decode('utf8')
+ t2 = text.split()
+ #print("data print: " + t2[0] + t2[1] + t2[2])
+ if t2[0] == "get":
+ print("Go to get func")
+ ServerGet(t2[1])
+ elif t2[0] == "put":
+ print("Go to put func")
+ ServerPut()
+ elif t2[0] == "list":
+ print("Go to List func")
+ ServerList()
+ elif t2[0] == "exit":
+ print("Go to Exit function")
+ ServerExit()
+ else:
+ ServerElse()
+print("Program will end now. ")
+quit()
+==================================================================================
+5. Implement a forward DNS lookup is getting the IP address for a given domain name typed in the 
+web browser. Use three level DNS architecture to extract the IP address of domain name.
+The cache should do the following operations :
+a. Add a mapping from URL to IP address
+b. Find the IP address for a given URL.
+a. Instead of [0-9] and (.) dot, need to take care of [A-Z], [a-z], and (.) dot. As most of the domain 
+name contains only lowercase characters, assume that there will be [a-z] and (.) 27 children for each 
+trie node (Trie is a type of k-ary search tree used for storing and searching a specific key from a set).
+b. When www.google.in is typed and google.in the browser takes us to the same page. So, need to 
+add a domain name into trie for the words after www(.). Similarly, while searching for a domain 
+name corresponding IP address, remove the www(.) if the user has provided it. The idea is to store 
+URLs in Trie nodes and store the corresponding IP address in the last or leaf node.
+ALGORITHM:
+SERVER:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Bind the IP address and Port number
+ STEP 6: Listen and accept the client’s request for the connection
+ STEP 7: Read the domain name and display if it is binded
+ STEP 8: Display the error message if it is not binded
+ STEP 9: Stop
+CLIENT:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Check whether the connection is established or not
+ STEP 6: Get the domain name
+ STEP 7: Display the corresponding IP address for the domain name
+ STEP 8: Stop
+SOURCE CODE:
+SERVER:
+#include<string.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<netdb.h>
+#define SA struct sockaddr
+int main()
+{
+ int listenfd,connfd;
+ socklen_t len;
+ struct sockaddr_in servaddr,cliaddr;
+ struct hostent*hp,tp;
+ char host[50],buff[100];
+ listenfd=socket(AF_INET,SOCK_STREAM,0);
+ bzero(&servaddr,sizeof(servaddr));
+ servaddr.sin_family=AF_INET;
+ servaddr.sin_port=htons(5035);
+ servaddr.sin_addr.s_addr=htons(INADDR_ANY);
+ printf("\nBinded");
+ bind(listenfd,(SA*)&servaddr,sizeof(servaddr));
+ listen(listenfd,10);
+ for(;;)
+ {
+ len=sizeof(cliaddr);
+ connfd=accept(listenfd,(SA*)&cliaddr,&len);
+ read(connfd,host,sizeof(host));
+ printf("\n\t%s",host);
+ if((hp=gethostbyname(host))==NULL)
+ printf("\nCan't get address");
+ if(inet_ntop(AF_INET,hp->h_addr,buff,sizeof(buff))<=0)
+ printf("\nHost address is not available");
+ printf("\n\t%s",buff);
+ write(connfd,buff,strlen(buff)+1);
+ close(connfd);
+ }
+ return 0;
+}
+CLIENT:
+#include<string.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<stdio.h>
+#include<netdb.h>
+#include<stdlib.h>
+#define SA struct sockaddr
+int main(int argc,char **argv)
+{
+ socklen_t len;
+ struct sockaddr_in servaddr;
+ struct hostent tp;
+ char buff[100],host[50];
+ int sockfd;
+ sockfd=socket(AF_INET,SOCK_STREAM,0);
+ bzero(&servaddr,sizeof(servaddr));
+ servaddr.sin_family=AF_INET;
+ servaddr.sin_port=htons(5035);
+ servaddr.sin_addr.s_addr=inet_addr("127.0.0.1");
+ if(connect(sockfd,(SA*)&servaddr,sizeof(servaddr))<0)
+ printf("Connect Error");
+ printf("\nEnter the Domain Name : ");
+ scanf("%s",host);
+ write(sockfd,host,strlen(host)+1);
+ if(read(sockfd,buff,sizeof(buff))<0)
+ printf("\nRead Error");
+ printf("\nThe host address : %s\n",buff);
+ return 0;
+}
+OUTPUT:
+SERVER:
+CLIENT:
+==============================================================================
+6. Implementation of stop and wait ARQ flow control mechanism between the end systems through 
+socket programming.
+Client:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+typedef struct packet{
+ char data[1024];
+}Packet;
+typedef struct frame{
+ int frame_kind; //ACK:0, SEQ:1 FIN:2
+ int sq_no;
+ int ack;
+ Packet packet;
+}Frame;
+int main(int argc, char **argv[]){
+ if (argc != 2){
+printf("Usage: %s <port>", argv[0]);
+exit(0);
+}
+int port = atoi(argv[1]);
+int sockfd;
+struct sockaddr_in serverAddr;
+char buffer[1024];
+socklen_t addr_size;
+int frame_id = 0;
+Frame frame_send;
+Frame frame_recv;
+int ack_recv = 1;
+sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+memset(&serverAddr, '\0', sizeof(serverAddr));
+serverAddr.sin_family = AF_INET;
+serverAddr.sin_port = htons(port);
+serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+while(1){
+if(ack_recv == 1){
+frame_send.sq_no = frame_id;
+frame_send.frame_kind = 1;
+frame_send.ack = 0;
+printf("Enter Data: ");
+scanf("%s", buffer);
+strcpy(frame_send.packet.data, buffer);
+sendto(sockfd, &frame_send, sizeof(Frame), 0, (struct 
+sockaddr*)&serverAddr, sizeof(serverAddr));
+printf("[+]Frame Send\n");
+}
+int addr_size = sizeof(serverAddr);
+int f_recv_size = recvfrom(sockfd, &frame_recv, sizeof(frame_recv), 0 ,(struct 
+sockaddr*)&serverAddr, &addr_size);
+if( f_recv_size > 0 && frame_recv.sq_no == 0 && frame_recv.ack == frame_id+1){
+printf("[+]Ack Received\n");
+ack_recv = 1;
+}else{
+printf("[-]Ack Not Received\n");
+ack_recv = 0;
+}
+ 
+frame_id++;
+}
+close(sockfd);
+return 0;
+}
+Server:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+typedef struct packet{
+ char data[1024];
+}Packet;
+typedef struct frame{
+ int frame_kind; //ACK:0, SEQ:1 FIN:2
+ int sq_no;
+ int ack;
+ Packet packet;
+}Frame;
+int main(int argc, char** argv){
+if (argc != 2){
+printf("Usage: %s <port>", argv[0]);
+exit(0);
+}
+int port = atoi(argv[1]);
+int sockfd;
+struct sockaddr_in serverAddr, newAddr;
+char buffer[1024];
+socklen_t addr_size;
+int frame_id=0;
+Frame frame_recv;
+Frame frame_send;
+sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+memset(&serverAddr, '\0', sizeof(serverAddr));
+serverAddr.sin_family = AF_INET;
+serverAddr.sin_port = htons(port);
+serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+bind(sockfd, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+addr_size = sizeof(newAddr);
+while(1){
+int f_recv_size = recvfrom(sockfd, &frame_recv, sizeof(Frame), 0, (struct 
+sockaddr*)&newAddr, &addr_size);
+if (f_recv_size > 0 && frame_recv.frame_kind == 1 && frame_recv.sq_no == 
+frame_id){
+printf("[+]Frame Received: %s\n", frame_recv.packet.data);
+frame_send.sq_no = 0;
+frame_send.frame_kind = 0;
+frame_send.ack = frame_recv.sq_no + 1;
+sendto(sockfd, &frame_send, sizeof(frame_send), 0, (struct 
+sockaddr*)&newAddr, addr_size);
+printf("[+]Ack Send\n");
+}else{
+printf("[+]Frame Not Received\n");
+}
+frame_id++;
+}
+close(sockfd);
+return 0;
+}
+=======================================================================
+7. Implementation of selective repeat ARQ flow control mechanism between the end systems through 
+socket programming.
+Client:
+import 
+socket
+def client_program():
+n = 4
+ win_start = 0
+win_end = win_start + n – 1
+host = socket.gethostname() # as both code is running on same pc
+port = 12344 # socket server port number
+sender = []
+flag = 0 #send whole sender list else 1 means send only win_start frame
+client_socket = socket.socket() # instantiate
+client_socket.connect((host, port)) # connect to the server
+print 'Window Size is ', n
+print '******** Enter "bye" to close connection ***************'
+ message = raw_input("Hit any key to start sending frames -> ") # take 
+input
+ while message.lower().strip() != 'bye':
+print "Sending frames..."
+if (flag == 0):
+for i in range(n):
+sender.append(win_start + i)
+for i in sender :
+print "Frame -> ", i
+else:
+print "Frame -> ", win_start
+msg = str(win_start)
+ client_socket.send(msg.encode()) # send message
+ data = client_socket.recv(1024).decode() # receive NAK
+msg = str(data)
+ack = int(msg)
+if ack not in sender:
+win_start = ack
+win_end = win_start + n – 1
+flag = 0 #send new frame
+for i in range(n):
+sender.pop()
+else:
+win_start = int(msg)
+flag = 1 #send old frame
+print "************************************"
+ print 'Received ACK server: ' + data # show in terminal
+ message = raw_input("Hit any key to start sending frames -> ") 
+# again take input
+ client_socket.close() # close the connection
+if __name__ == '__main__':
+ client_program()
+OUTPUT : Client Side
+python cliselect.py
+Window Size is 4
+******** Enter "bye" to close connection ***************
+Hit any key to start sending frames -> 
+Sending frames...
+Frame -> 0
+Frame -> 1
+Frame -> 2
+Frame -> 3
+************************************
+Received ACK server: 4
+Hit any key to start sending frames -> 
+Sending frames...
+Frame -> 4
+Frame -> 5
+Frame -> 6
+Frame -> 7
+************************************
+Received ACK server: 4
+Hit any key to start sending frames -> 
+Sending frames...
+Frame -> 4
+************************************
+Received ACK server: 7
+Hit any key to start sending frames -> 
+Sending frames...
+Frame -> 7
+************************************
+Received ACK server: 8
+Hit any key to start sending frames -> 
+Sending frames...
+Frame -> 8
+Frame -> 9
+Frame -> 10
+Frame -> 11
+************************************
+Received ACK server: 12
+Hit any key to start sending frames -> bye
+Server:
+import 
+socket
+import random
+def server_program():
+ # get the hostname
+ host = socket.gethostname()
+ port = 12344 # initiate port no above 1024
+ exp = 0
+ n = 4
+ new = 1
+ win_start = 0
+ win_end = win_start + n – 1
+ receiver = []
+ server_socket = socket.socket() # get instance
+ # look closely. The bind() function takes tuple as argument
+ server_socket.bind((host, port)) # bind host address and port together
+ # configure how many client the server can listen simultaneously
+ server_socket.listen(2)
+ conn, address = server_socket.accept() # accept new connection
+ print "Connection from: ", str(address)
+ while True:
+ # receive data stream. it won't accept data packet greater than 1024 
+bytes
+ data = conn.recv(1024).decode()
+ if not data:
+ # if data is not received break
+ Break
+rec = int(data)
+lim = rec + n – 1
+count = 0
+flag = 0
+ack = rec
+randy = random.randint(1, 4)
+if new == 1 : #you received a new frame of a new window
+while(count != randy):
+temp = random.randint(rec, lim)
+if temp not in receiver:
+print "Received Frame -> ", temp
+count+=1
+flag = 1 #Atleast one new frame added in 
+receiver buffer
+receiver.append(temp)
+else :
+print "Received Frame -> ", rec #you received a new frame 
+of an old window 
+receiver.append(rec)
+flag = 1
+ if(flag == 1):
+for i in range(rec,lim+1):
+if i not in receiver:
+ack = i
+Break
+ack = i+1
+print "Sending ACK -> ", ack #next expected frame
+ print '***************************************************'
+data = str(ack)
+ conn.send(data.encode()) # send data to the client
+if ack > win_end :
+win_start = ack
+win_end = win_start + n – 1
+new = 1 # now receive a new frame of a new window
+else :
+new = 0 # now received a new frame of an old 
+window
+ conn.close() # close the connection
+if __name__ == '__main__':
+ server_program()
+OUTPUT : Server Side
+python serselect.py
+Connection from: ('127.0.0.1', 40912)
+Received Frame -> 0
+Received Frame -> 3
+Received Frame -> 2
+Received Frame -> 1
+Sending ACK -> 4
+***************************************************
+Received Frame -> 6
+Received Frame -> 5
+Sending ACK -> 4
+***************************************************
+Received Frame -> 4
+Sending ACK -> 7
+***************************************************
+Received Frame -> 7
+Sending ACK -> 8
+***************************************************
+Received Frame -> 9
+Received Frame -> 11
+Received Frame -> 8
+Received Frame -> 10
+Sending ACK -> 12
+===========================================================================
+8. Implementation of Shortest Path Between Routing Terminals through socket programming.
+The famous Dijkstra’s algorithm can be used in a variety of contexts – including as a means to find the 
+shortest route between two routers, also known as Link state routing. This article explains a simulation of 
+Dijkstra’s algorithm in which the nodes (routers) are terminals. Once the shortest path between two nodes 
+(terminals) is calculated, the shortest path itself is sent as a message to each terminal on its path in sequence, 
+until the destination terminal is reached. Whenever the message has traversed a node, its terminal displays 
+the traversal. In this way, it is possible to both see and simulate the passage of a message across a shortest 
+calculated route.
+The procedure to run the following code is as follows:
+a) Execute the driver code. 
+b) Before providing any input to the driver code, run the router codes router1.py, router2.py, etc. in 
+separate terminals/tabs.
+c) Now provide input to the driver code in the form of a matrix G, in which any entry G[i, j] is the 
+distance from node i to node j. The matrix must be symmetrical. If i=j, then D[i, j]=0 as the distance 
+between a node and itself is considered to be nothing. If there is no direct connection between two 
+nodes, then D[i, j]=999 (the equivalent of infinity).
+d) Specify source and destination nodes, where the nodes vary from 0 to 3, and represent terminals 1 
+to 4 respectively.
+This implementation specifies four nodes but this can easily be extended to N nodes with N terminals and 
+port numbers representing processes running on them respectively.
+Consider the following example of a four-node network, with distances between them as specified and nodes 
+numbered 0 to 3 from left to right:
+Distances between terminals
+For this network, the matrix G with entries G[i, j] as specified above would be:
+[[0, 1, 999, 999],
+[1, 0, 2, 999],
+[999, 2, 0, 3],
+[999, 999, 3, 0]]
+This matrix would have to be input to the driver code. Dijkstra’s algorithm is used to find the shortest path 
+between source and destination. A list containing the remaining path is sent to each node en route to the final 
+destination.
+Driver code:
+# Driver Code for implementing Dijkstra's algorithm
+import socket
+import sys
+import pickle
+S = set()
+G =[] # adjacency matrix
+# give input matrix
+for i in range(4):
+listo =[0, 0, 0, 0]
+for j in range(4):
+listo[j]= int(input("give input"))
+G.append(listo)
+source = int(input("give source"))
+destination = int(input("give destination"))
+Q =[] # empty queue
+for i in range(4):
+Q.append(i)
+d =[0, 0, 0, 0] # initialize d values
+pi =[0, 0, 0, 0] # initialize pi values
+for i in range(4):
+if(i == source):
+d[i]= 0
+else:
+d[i]= 999
+for i in range(4):
+pi[i]= 9000
+S.add(source)
+# While items still exist in Q
+while (len(Q)!= 0):
+# Find the minimum distance x from
+# source of all nodes in Q
+x = min(d[q] for q in Q)
+u = 0
+for q in Q:
+if(d[q]== x):
+# Find the node u in Q with minimum
+# distance x from source
+u = q
+print(u, "Is the minimum distance")
+Q.remove(u) # removed the minimum vertex
+S.add(u)
+adj =[]
+for y in range(4):
+# find adjacent vertices to minimum vertex
+if(y != u and G[u][y]!= 999):
+adj.append(y)
+# For each adjacent vertex, perform the update
+# of distance and pi vectors
+for v in adj:
+if(d[v]>(d[u]+G[u][v])):
+d[v]= d[u]+G[u][v]
+pi[v]= u # update adjacents distance and pi
+route =[]
+x = destination
+# If destination is source, then pi[x]= 9000.
+if(pi[x]== 9000):
+print(source)
+else:
+# Find the path from destination to source
+while(pi[x]!= 9000):
+route.append(x)
+x = pi[x]
+route.reverse()
+print(route) # Display the route
+print(pi) # Display the path vector
+print(d) # Display the distance of each node from source
+'''We will now send the calculated minimal route to the terminal
+# representing 'source'. From the source terminal, the 'route' list
+# will be sent to the next hop en route to the final destination.
+# At each intermediate terminal, the router removes its own identity
+from the list and sends the rest of the route to the next router.
+This continues until the final router is reached.'''
+sendingroute = pickle.dumps(route)
+sockets =[8895, 8896, 8897, 8898]
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((socket.gethostname(), sockets))
+try:
+# try sendall if it doesn't work.
+sock.send(sendingroute)
+finally:
+print("")
+sock.close()
+Router – 1:
+# Code for Router 1
+import socket
+import sys
+import pickle
+for i in range(1) :
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((socket.gethostname(), 8895))
+sock.listen(1)
+connection, client_address = sock.accept()
+route =[]
+sockets =[8895, 8896, 8897, 8898]
+while 1:
+try:
+route = pickle.loads(connection.recv(1024))
+except EOFError:
+break
+finally:
+break
+print("Traversed 1")
+socknext = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+if(len(route)>0):
+x = route[0]
+route.remove(x)
+dataroute = pickle.dumps(route)
+socknext.connect((socket.gethostname(), sockets[x]))
+try:
+socknext.send(dataroute) # try sendall
+data = socknext.recv(16)
+print(data)
+finally:
+print("")
+socknext.close()
+Router – 2
+# Code for Router 2
+import socket
+import sys
+import pickle
+for i in range(1) :
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((socket.gethostname(), 8896))
+sock.listen(1)
+connection, client_address = sock.accept()
+route =[]
+sockets =[8895, 8896, 8897, 8898]
+while 1:
+try:
+route = pickle.loads(connection.recv(1024))
+except EOFError:
+break
+finally:
+break
+print("Traversed 2")
+socknext = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+if(len(route)>0):
+x = route[0]
+route.remove(x)
+dataroute = pickle.dumps(route)
+socknext.connect((socket.gethostname(), sockets[x]))
+try:
+socknext.send(dataroute) # try sendall
+data = socknext.recv(16)
+print(data)
+finally:
+print("")
+socknext.close()
+Router – 3
+# Code for Router 3
+import socket
+import sys
+import pickle
+for i in range(1) :
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((socket.gethostname(), 8897))
+sock.listen(1)
+connection, client_address = sock.accept()
+route =[]
+sockets =[8895, 8896, 8897, 8898]
+while 1:
+try:
+route = pickle.loads(connection.recv(1024))
+except EOFError:
+break
+finally:
+break
+print("Traversed 3")
+socknext = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+if(len(route)>0):
+x = route[0]
+route.remove(x)
+dataroute = pickle.dumps(route)
+socknext.connect((socket.gethostname(), sockets[x]))
+try:
+socknext.send(dataroute) # try sendall
+data = socknext.recv(16)
+print(data)
+finally:
+print("")
+socknext.close()
+Router – 4
+# Code for Router 4
+import socket
+import sys
+import pickle
+for i in range(1) :
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((socket.gethostname(), 8898))
+sock.listen(1)
+connection, client_address = sock.accept()
+route =[]
+sockets =[8895, 8896, 8897, 8898]
+while 1:
+try:
+route = pickle.loads(connection.recv(1024))
+except EOFError:
+break
+finally:
+break
+print("Traversed 4")
+socknext = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+if(len(route)>0):
+x = route[0]
+route.remove(x)
+dataroute = pickle.dumps(route)
+socknext.connect((socket.gethostname(), sockets[x]))
+try:
+socknext.send(dataroute) # try sendall
+data = socknext.recv(16)
+print(data)
+finally:
+print("")
+socknext.close()
+Output:
+==========================================================================
+9. To write a program for Checksum and Cyclic Redundancy Check error control mechanisms
+ALGORITHM:
+SERVER:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Bind the IP address and Port number
+ STEP 6: Listen and accept the client’s request for the connection
+ STEP 7: Establish the connection with the client
+ STEP 8: Display the dividend and divisor
+ STEP 9: Display the dividend with zero appended
+ STEP 10: Display the quotient, remainder and CRC value
+ STEP 11: Close the socket
+ STEP 12: Stop
+CLIENT:
+ STEP 1: Start
+ STEP 2: Declare the variables for the socket
+ STEP 3: Specify the family, protocol, IP address and port number
+ STEP 4: Create a socket using socket() function
+ STEP 5: Call the connect() function
+ STEP 6: Read the dividend and divisor
+ STEP 6: Display the quotient, remainder and CRC value
+ STEP 6: Close the socket
+ STEP 7: Stop
+SOURCE CODE:
+SERVER:
+#include<stdio.h>
+#include<string.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<netdb.h>
+#define SERV_TCP_PORT 5035
+int main(int argc, char **argv)
+{
+int sockfd,newsockfd,clength;
+struct sockaddr_in serv_addr,cli_addr;
+char a[30],b[30],c[30]={0},q[30]={0},p[30]={0},np[30]={0},crc[10]={0},r[30]={0};
+int n,m,i=0,j=0,count=0,k=0,l=0,ir=0,ip=0,cou=0,u=0,w=0,nk=0;
+sockfd=socket(AF_INET,SOCK_STREAM,0);
+serv_addr.sin_family=AF_INET;
+serv_addr.sin_addr.s_addr=INADDR_ANY;
+serv_addr.sin_port=htons(SERV_TCP_PORT);
+printf("\n Binded...");
+bind(sockfd,(struct sockaddr*)&serv_addr,sizeof(serv_addr));
+listen(sockfd,5);
+clength=sizeof(cli_addr);
+newsockfd=accept(sockfd,(struct sockaddr*)&cli_addr,&clength);
+read(newsockfd,a,30);
+read(newsockfd,b,30);
+m=strlen(b);
+printf("\n Dividend:%s",a);
+printf("\n Divisor:%s",b);
+strcpy(c,a);
+for(i=0;i<m-1;i++)
+strcat(c,"0");
+printf("\n Dividend with zero appended:%s",c);
+for(i=0;i<m;i++)
+{
+ p[k++]=c[i];
+ if(strlen(p)==m)
+ q[j++]='l';
+}
+for(i=0;i<strlen(c);)
+{
+ if(p[nk++]==b[l++])
+ r[ir++]='0';
+ else
+ r[ir++]='l';
+ count++;
+if(count==strlen(b)&&i<(strlen(c)-1))
+{
+ ip=0;
+ for(u=0;u<strlen(b);u++)
+ {
+ if(r[u]=='l')
+ {
+ for(n=u;n<strlen(b);n++)
+ {
+ np[ip++]=r[n];
+ r[n]='0';
+ cou++;
+ }
+ }
+ }
+ count=0;
+ nk=0;
+ l=0;
+ ir=0;
+ if(cou!=strlen(b))
+ {
+ if((strlen(b)-cou)==(strlen(c)-(i+1))||(strlen(b)-cou)<(strlen(c)-(i+1)))
+ {
+ while(cou!=strlen(b))
+ {
+ i++;
+ np[ip++]=c[i];
+ cou++;
+ w++;
+ }
+ strcpy(p,np);
+ for(u=0;u<w-1;u++)
+ q[j++]='0';
+ if(w!=0)
+ {
+ i-=strlen(np);
+ w=0;
+ }
+ }
+ else
+ {
+ for(;i+1<strlen(c);)
+ {
+ i++;
+ np[ip++]=c[i];
+ w++;
+ }
+ 
+if(ip<strlen(b))
+ {
+ for(;ip<strlen(b);)
+ np[ip++]=' ';
+ }
+ strcpy(r,np);
+ for(u=0;u<w-1;u++)
+ q[i++]='0';
+ i=strlen(c);
+ w=0;
+}
+}
+ if(cou=strlen(b))
+ {
+ q[j++]='l';
+ cou=0;
+ }
+ ip=0;
+ cou=0;
+}
+ i++;
+}
+printf("\n Quotient=%s",q);
+printf("\n Remainder=%s",r);
+for(i=strlen(r)-(m-1);i<=strlen(r);i++)
+crc[w++]=r[i];
+printf("\n CRC values: %s\n",crc);
+write(newsockfd,q,30);
+write(newsockfd,r,30);
+write(newsockfd,crc,10);
+close(sockfd);
+return 0;
+}
+CLIENT:
+#include<stdio.h>
+#include<string.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<netdb.h>
+#define SERV_TCP_PORT 5035
+int main(int argc,char * * argv)
+{
+ int sockfd;
+ struct sockaddr_in serv_addr;
+ struct hostent *server;
+ char a[30],b[30],q[30],r[30],crc[10];
+ sockfd=socket(AF_INET,SOCK_STREAM,0);
+ serv_addr.sin_family=AF_INET;
+ serv_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
+ serv_addr.sin_port=htons(SERV_TCP_PORT);
+ connect(sockfd,(struct sockaddr*)&serv_addr,sizeof(serv_addr));
+ printf("\nEnter the dividend:");
+ scanf("%s",a);
+ printf("\nEnter the divisor:");
+ scanf("%s",b);
+ write(sockfd,a,30);
+ write(sockfd,b,30);
+ printf("\n");
+ printf("\nServer result:");
+ read(sockfd,q,30);
+ read(sockfd,r,30);
+ read(sockfd,crc,10);
+ printf("\n\nQuotient=%s",q);
+ printf("\n\nRemainder=%s",r);
+ printf("\n\nCRC values=%s\n",crc);
+ close(sockfd);
+ return 0;
+}
+OUTPUT:
+SERVER:
+CLIENT:
